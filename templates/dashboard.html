@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Command Center | DAWAI-SETU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="../static/app.js"></script>
+  <script defer src="/static/app.js"></script>
+  <script defer src="app.js"></script>
+</head>
+
+<body data-page="dashboard">
+  <!-- Real-time Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Global Navigation -->
+  <header class="nav-bar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">
+        <div class="brand-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+          <span class="brand-tag">LIFECYCLE & REDISTRIBUTION</span>
+        </div>
+      </a>
+
+      <div class="nav-center">
+        <div class="node-pill">
+          <span class="beacon"></span>
+          <span>Meerut Node · Active</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="inventory.html" class="nav-link">Inventory</a>
+        <a href="matching.html" class="nav-link">Smart Matching</a>
+        <a href="transfers.html" class="nav-link">Transfers</a>
+        <a href="disposal.html" class="nav-link">Disposal</a>
+        <a href="admin.html" class="nav-link">Governance</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-sos" onclick="openModal('emergencyModal')" title="Broadcast Emergency Medicine Request">
+          <span class="sos-dot"></span>
+          <span>🚨 SOS Broadcast</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <div class="main-wrapper">
+    <div class="app-shell">
+      <!-- SIDEBAR NAVIGATION -->
+      <aside class="sidebar">
+        <div class="side-header">
+          <div class="side-title">COMMAND CENTER</div>
+          <span class="side-subtitle">MEERUT REGIONAL HUB</span>
+        </div>
+        
+        <div class="sidebar-nav">
+          <a href="dashboard.html" class="side-item active">
+            <span class="side-icon">▦</span>
+            <span>Overview &amp; Pulse</span>
+          </a>
+          <a href="inventory.html" class="side-item">
+            <span class="side-icon">▤</span>
+            <span>Batch Inventory</span>
+          </a>
+          <a href="matching.html" class="side-item">
+            <span class="side-icon">⌖</span>
+            <span>AI Smart Matching</span>
+          </a>
+          <a href="transfers.html" class="side-item">
+            <span class="side-icon">↗</span>
+            <span>Traceable Transfers</span>
+          </a>
+          <a href="disposal.html" class="side-item">
+            <span class="side-icon">♻</span>
+            <span>Eco-Disposal</span>
+          </a>
+          <a href="admin.html" class="side-item">
+            <span class="side-icon">⚙</span>
+            <span>Governance &amp; Audit</span>
+          </a>
+        </div>
+
+        <div class="side-footer">
+          <div class="user-profile">
+            <div class="user-avatar">AD</div>
+            <div class="user-info">
+              <b>Dr. Admin Verma</b>
+              <small>Regional Node Director</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- DASHBOARD CONTENT AREA -->
+      <main class="content-area">
+        <div class="page-header">
+          <div class="page-title-group">
+            <div class="badge-tag primary">PLATFORM PULSE · LIVE DATA</div>
+            <h1>Platform Command Center</h1>
+            <p>Real-time telemetry, surplus prediction, and logistics coordination across Meerut &amp; NCR clusters.</p>
+          </div>
+
+          <div class="page-actions">
+            <button class="btn btn-secondary" onclick="location.href='inventory.html'">View Inventory</button>
+            <button class="btn btn-primary" onclick="openModal('addBatchModal')">+ Add Medicine Batch</button>
+          </div>
+        </div>
+
+        <!-- 6-METRIC KPI GRID -->
+        <div class="metric-grid" id="metricsGrid">
+          <div class="metric-card">
+            <span class="metric-label">Tracked Medicines</span>
+            <div class="metric-value" data-stat="total_medicines">8</div>
+            <span class="metric-sub">Active batch records</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-label">Network Units</span>
+            <div class="metric-value" data-stat="total_quantity">2,430</div>
+            <span class="metric-sub">Physical medicine units</span>
+          </div>
+
+          <div class="metric-card warn">
+            <span class="metric-label">Near Expiry Risk</span>
+            <div class="metric-value" data-stat="near_expiry">4</div>
+            <span class="metric-sub">&lt;60 days shelf life</span>
+          </div>
+
+          <div class="metric-card success">
+            <span class="metric-label">Verified NGO Partners</span>
+            <div class="metric-value" data-stat="verified_orgs">4</div>
+            <span class="metric-sub">Licensed beneficiaries</span>
+          </div>
+
+          <div class="metric-card info">
+            <span class="metric-label">Active Transfers</span>
+            <div class="metric-value" data-stat="active_transfers">2</div>
+            <span class="metric-sub">In dispatch / transit</span>
+          </div>
+
+          <div class="metric-card success">
+            <span class="metric-label">Waste Diverted (kg)</span>
+            <div class="metric-value" data-stat="waste_diverted_kg">27.5</div>
+            <span class="metric-sub">~11.5 kg CO₂ saved</span>
+          </div>
+        </div>
+
+        <!-- MAIN DASHBOARD PANELS -->
+        <div class="dash-grid">
+          <!-- AI SURPLUS PREDICTION SIMULATOR (WIDE PANEL) -->
+          <section class="panel wide ai-prediction-card">
+            <div class="panel-header">
+              <div>
+                <h3>AI Surplus Intelligence &amp; Dynamic Forecaster</h3>
+                <small>Predictive consumption velocity model · Prevents avoidable spoilage before expiry</small>
+              </div>
+              <span class="pill high" id="predRiskPill">HIGH SURPLUS RISK</span>
+            </div>
+
+            <div class="prediction-body">
+              <div class="med-badge-info">
+                <div class="med-avatar">Rx</div>
+                <div class="med-details">
+                  <b>Paracetamol 650mg</b>
+                  <span>Batch PCM-24081 · CityCare Pharmacy</span>
+                  <small style="color:var(--slate-400); font-weight:600;">48 days remaining</small>
+                </div>
+              </div>
+
+              <div class="pred-stat">
+                <small>Local Demand Forecast</small>
+                <strong id="predDemandVal">201</strong>
+                <span>Estimated local consumption</span>
+              </div>
+
+              <div class="pred-stat">
+                <small>Predicted Surplus</small>
+                <strong id="predSurplusVal" style="color: var(--rose-600);">299</strong>
+                <span>Units at spoilage risk</span>
+              </div>
+
+              <div class="ai-action-box">
+                <small>ACTIONABLE RECOMMENDATION</small>
+                <b id="predActionText">Trigger immediate verified NGO redistribution</b>
+                <p>High probability of expiring before local demand absorbs stock.</p>
+                <a href="matching.html" class="btn btn-primary btn-sm" style="margin-top: 10px; width: 100%;">Match Beneficiary Now →</a>
+              </div>
+            </div>
+
+            <!-- Interactive AI Simulation Controls -->
+            <div class="ai-controls">
+              <div class="slider-group">
+                <span>Stock: <b id="valStock">500</b> units</span>
+                <input type="range" id="simStock" min="100" max="1000" step="50" value="500">
+              </div>
+
+              <div class="slider-group">
+                <span>Dispense Velocity: <b id="valDispense">4.2 /day</b></span>
+                <input type="range" id="simDispense" min="1" max="15" step="0.5" value="4.2">
+              </div>
+
+              <div class="slider-group">
+                <span>Surge Factor: <b id="valSurge">1.0x</b></span>
+                <input type="range" id="simSurge" min="0.5" max="2.5" step="0.1" value="1.0">
+              </div>
+
+              <span style="font-size: 11.5px; color: var(--primary-700); font-weight: 700;">
+                ⚡ Live simulation auto-calculating
+              </span>
+            </div>
+          </section>
+
+          <!-- EXPIRY WATCHLIST BREAKDOWN -->
+          <section class="panel">
+            <div class="panel-header">
+              <h3>Shelf-Life Risk Tiers</h3>
+              <a href="inventory.html" class="panel-link">Manage Stock →</a>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 4px;">
+                  <span style="color: var(--emerald-600);">Safe (&gt;90 days)</span>
+                  <b>2 batches (1,300 units)</b>
+                </div>
+                <div style="height: 8px; background: var(--slate-100); border-radius: var(--radius-full); overflow: hidden;">
+                  <div style="width: 60%; height: 100%; background: var(--emerald-500); border-radius: var(--radius-full);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 4px;">
+                  <span style="color: var(--sky-600);">Monitor (60–90 days)</span>
+                  <b>1 batch (300 units)</b>
+                </div>
+                <div style="height: 8px; background: var(--slate-100); border-radius: var(--radius-full); overflow: hidden;">
+                  <div style="width: 25%; height: 100%; background: var(--sky-500); border-radius: var(--radius-full);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 4px;">
+                  <span style="color: var(--amber-600);">Near Expiry (30–60 days)</span>
+                  <b>2 batches (620 units)</b>
+                </div>
+                <div style="height: 8px; background: var(--slate-100); border-radius: var(--radius-full); overflow: hidden;">
+                  <div style="width: 40%; height: 100%; background: var(--amber-500); border-radius: var(--radius-full);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 4px;">
+                  <span style="color: var(--rose-600);">Critical (&lt;30 days)</span>
+                  <b>2 batches (270 units)</b>
+                </div>
+                <div style="height: 8px; background: var(--slate-100); border-radius: var(--radius-full); overflow: hidden;">
+                  <div style="width: 20%; height: 100%; background: var(--rose-500); border-radius: var(--radius-full);"></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--slate-100); display: flex; justify-content: space-between; align-items: center;">
+              <small style="color: var(--slate-400);">Automated audit check performed every 6 hrs</small>
+              <span class="badge-tag success">NODE HEALTHY</span>
+            </div>
+          </section>
+
+          <!-- SUPPLY VS REDISTRIBUTION VELOCITY -->
+          <section class="panel">
+            <div class="panel-header">
+              <h3>Network Distribution Velocity</h3>
+              <span class="pill ok">CLUSTER SYNCED</span>
+            </div>
+
+            <div style="height: 120px; display: flex; align-items: flex-end; gap: 12px; border-bottom: 1px solid var(--slate-200); padding: 0 10px 10px;">
+              <div style="flex:1; background: var(--primary-100); height: 45%; border-radius: 4px 4px 0 0;" title="Day 1: 180 units"></div>
+              <div style="flex:1; background: var(--primary-200); height: 60%; border-radius: 4px 4px 0 0;" title="Day 2: 240 units"></div>
+              <div style="flex:1; background: var(--primary-300); height: 75%; border-radius: 4px 4px 0 0;" title="Day 3: 310 units"></div>
+              <div style="flex:1; background: var(--primary-400); height: 50%; border-radius: 4px 4px 0 0;" title="Day 4: 200 units"></div>
+              <div style="flex:1; background: var(--primary-500); height: 85%; border-radius: 4px 4px 0 0;" title="Day 5: 420 units"></div>
+              <div style="flex:1; background: var(--primary-600); height: 95%; border-radius: 4px 4px 0 0;" title="Day 6: 490 units"></div>
+              <div style="flex:1; background: var(--emerald-500); height: 70%; border-radius: 4px 4px 0 0;" title="Day 7: 350 units"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--slate-400); margin-top: 10px;">
+              <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+
+            <div style="display: flex; gap: 16px; margin-top: 16px; font-size: 12px; color: var(--slate-600);">
+              <span><b style="color: var(--primary-600);">●</b> Intake Volume</span>
+              <span><b style="color: var(--emerald-500);">●</b> Successful Redistribution</span>
+            </div>
+          </section>
+
+          <!-- LIVE REGIONAL AUDIT & LOGISTICS STREAM (WIDE PANEL) -->
+          <section class="panel wide">
+            <div class="panel-header">
+              <h3>Real-Time Regional Event Stream</h3>
+              <a href="admin.html" class="panel-link">Full Audit Trail →</a>
+            </div>
+
+            <div class="audit-stream">
+              <div class="audit-entry">
+                <div class="audit-icon" style="background: var(--emerald-50); color: var(--emerald-600);">✓</div>
+                <div class="audit-content">
+                  <b>AI Allocation Recommended: Paracetamol 650mg (Batch PCM-24081)</b>
+                  <span>Matched to ABC Healthcare NGO (14 km away) · 94% fit confidence</span>
+                </div>
+                <div class="audit-time">8 mins ago</div>
+              </div>
+
+              <div class="audit-entry">
+                <div class="audit-icon" style="background: var(--sky-50); color: var(--sky-600);">↗</div>
+                <div class="audit-content">
+                  <b>Consignment In Transit: TRK-26296-01 (Paracetamol 200 units)</b>
+                  <span>En route: CityCare Pharmacy → ABC Healthcare NGO · Carrier dispatched</span>
+                </div>
+                <div class="audit-time">1 hr ago</div>
+              </div>
+
+              <div class="audit-entry">
+                <div class="audit-icon" style="background: var(--amber-50); color: var(--amber-600);">⚠</div>
+                <div class="audit-content">
+                  <b>Expiry Alert Flagged: Ibuprofen 400mg (Batch IBU-24031)</b>
+                  <span>Shelf-life threshold &lt; 20 days remaining · Priority allocation required</span>
+                </div>
+                <div class="audit-time">3 hrs ago</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer-site">
+    <div class="footer-content">
+      <div class="footer-col brand-col">
+        <div class="brand footer-brand">
+          <div class="brand-badge small">DS</div>
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+        </div>
+        <p class="footer-desc">Intelligent medicine lifecycle governance, AI surplus prediction, and verified redistribution network for India's healthcare supply chain.</p>
+        <div class="footer-chips">
+          <span class="chip">Smart India Hackathon 2026</span>
+          <span class="chip">Problem #26296</span>
+          <span class="chip">Team Cheek Syndicate</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Core Modules</h4>
+        <ul>
+          <li><a href="dashboard.html">Command Center Pulse</a></li>
+          <li><a href="inventory.html">Batch Inventory &amp; Expiry</a></li>
+          <li><a href="matching.html">AI Allocation Engine</a></li>
+          <li><a href="transfers.html">Traceable Transfer Pipeline</a></li>
+          <li><a href="disposal.html">Eco-Compliance &amp; Disposal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Regional Node</h4>
+        <div class="node-card">
+          <div class="node-status">● Live Regional Sync</div>
+          <p>Meerut District · UP Zone 01</p>
+          <small>Connected to 4 Hospitals, 8 Pharmacies, 3 Verified NGOs</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DAWAI-SETU Platform. Hackathon Demonstration Prototype · Built for high social &amp; environmental impact.</p>
+      <div class="footer-links">
+        <a href="#privacy" onclick="showToast('Data Governance Policy: DPDP Act 2023 Compliant'); return false;">Privacy &amp; Compliance</a>
+        <a href="#terms" onclick="showToast('Standard Healthcare Provider Protocol'); return false;">Terms of Use</a>
+        <a href="admin.html">Audit Logs</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ADD BATCH MODAL -->
+  <div class="modal-overlay" id="addBatchModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('addBatchModal')">×</button>
+      <div class="modal-header">
+        <div class="badge-tag primary">STOCK INTAKE</div>
+        <h2>Add Medicine Batch</h2>
+        <p>Register a pharmaceutical consignment with batch tracking, storage specs, and expiry metadata.</p>
+      </div>
+      <form onsubmit="handleAddMedicine(event)">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Medicine Name &amp; Strength *</label>
+            <input name="name" required placeholder="e.g. Paracetamol 650mg">
+          </div>
+          <div class="form-group">
+            <label>Pharmacological Category</label>
+            <select name="category">
+              <option value="Analgesic &amp; Antipyretic">Analgesic &amp; Antipyretic</option>
+              <option value="Antibiotic">Antibiotic</option>
+              <option value="Rehydration Electrolytes">Rehydration Electrolytes</option>
+              <option value="Antihistamine">Antihistamine</option>
+              <option value="Antidiabetic">Antidiabetic</option>
+              <option value="Pediatric Respiratory">Pediatric Respiratory</option>
+              <option value="General">General Pharmaceutical</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Batch Number *</label>
+            <input name="batch" required placeholder="e.g. PCM-26099" style="text-transform: uppercase;">
+          </div>
+          <div class="form-group">
+            <label>Total Units (Count) *</label>
+            <input name="quantity" type="number" min="1" required placeholder="e.g. 500">
+          </div>
+          <div class="form-group">
+            <label>Expiry Date *</label>
+            <input name="expiry" type="date" required>
+          </div>
+          <div class="form-group">
+            <label>Storage Temperature / Conditions</label>
+            <input name="storage" value="Room temp 20–25°C">
+          </div>
+          <div class="form-group">
+            <label>Origin Hub Location</label>
+            <input name="location" value="Meerut">
+          </div>
+          <div class="form-group full">
+            <label>Donor Pharmacy / Hospital Facility</label>
+            <input name="donor" value="CityCare Pharmacy">
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('addBatchModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Register Batch to Network →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Emergency SOS Modal -->
+  <div class="modal-overlay" id="emergencyModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('emergencyModal')">×</button>
+      <div class="modal-header">
+        <div class="badge-tag danger">EMERGENCY DISPATCH PROTOCOL</div>
+        <h2>🚨 Broadcast Medicine Need</h2>
+        <p>Trigger an instant priority allocation alert across all registered donors and hospital nodes in the Meerut-NCR cluster.</p>
+      </div>
+      <form onsubmit="handleEmergencySubmit(event)">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Required Medicine / Strength *</label>
+            <input name="medicine" required placeholder="e.g. Paracetamol 650mg &amp; ORS Sachets">
+          </div>
+          <div class="form-group">
+            <label>Required Quantity (Units) *</label>
+            <input name="quantity" type="number" min="1" required placeholder="e.g. 200">
+          </div>
+          <div class="form-group">
+            <label>Urgency Level *</label>
+            <select name="urgency" required>
+              <option value="Critical" selected>Critical (Immediate threat to care)</option>
+              <option value="High">High (Needed within 12 hours)</option>
+              <option value="Medium">Medium (Needed within 48 hours)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Target Facility / Location *</label>
+            <input name="location" required placeholder="e.g. Meerut Community Relief Camp">
+          </div>
+          <div class="form-group">
+            <label>Requesting Authority / Doctor *</label>
+            <input name="required_by" required placeholder="e.g. Dr. A. Verma (CMO)">
+          </div>
+          <div class="form-group">
+            <label>Emergency Contact Number *</label>
+            <input name="contact" required placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group full">
+            <label>Clinical Context / Outbreak Reason *</label>
+            <textarea name="reason" rows="3" required placeholder="Describe clinical reason (e.g. Sudden pediatric gastro flare, seasonal flood relief triage)"></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('emergencyModal')">Cancel</button>
+          <button type="submit" class="btn btn-danger">Broadcast Priority Alert →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

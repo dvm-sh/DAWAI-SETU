@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Governance & Audit | DAWAI-SETU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="../static/app.js"></script>
+  <script defer src="/static/app.js"></script>
+  <script defer src="app.js"></script>
+</head>
+
+<body data-page="admin">
+  <!-- Real-time Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Global Navigation -->
+  <header class="nav-bar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">
+        <div class="brand-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+          <span class="brand-tag">LIFECYCLE & REDISTRIBUTION</span>
+        </div>
+      </a>
+
+      <div class="nav-center">
+        <div class="node-pill">
+          <span class="beacon"></span>
+          <span>Meerut Node · Active</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="inventory.html" class="nav-link">Inventory</a>
+        <a href="matching.html" class="nav-link">Smart Matching</a>
+        <a href="transfers.html" class="nav-link">Transfers</a>
+        <a href="disposal.html" class="nav-link">Disposal</a>
+        <a href="admin.html" class="nav-link active">Governance</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-sos" onclick="openModal('emergencyModal')" title="Broadcast Emergency Medicine Request">
+          <span class="sos-dot"></span>
+          <span>🚨 SOS Broadcast</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <div class="main-wrapper">
+    <div class="app-shell">
+      <!-- SIDEBAR NAVIGATION -->
+      <aside class="sidebar">
+        <div class="side-header">
+          <div class="side-title">COMMAND CENTER</div>
+          <span class="side-subtitle">GOVERNANCE & TRUST</span>
+        </div>
+        
+        <div class="sidebar-nav">
+          <a href="dashboard.html" class="side-item">
+            <span class="side-icon">▦</span>
+            <span>Overview & Pulse</span>
+          </a>
+          <a href="inventory.html" class="side-item">
+            <span class="side-icon">▤</span>
+            <span>Batch Inventory</span>
+          </a>
+          <a href="matching.html" class="side-item">
+            <span class="side-icon">⌖</span>
+            <span>AI Smart Matching</span>
+          </a>
+          <a href="transfers.html" class="side-item">
+            <span class="side-icon">↗</span>
+            <span>Traceable Transfers</span>
+          </a>
+          <a href="disposal.html" class="side-item">
+            <span class="side-icon">♻</span>
+            <span>Eco-Disposal</span>
+          </a>
+          <a href="admin.html" class="side-item active">
+            <span class="side-icon">⚙</span>
+            <span>Governance & Audit</span>
+          </a>
+        </div>
+
+        <div class="side-footer">
+          <div class="user-profile">
+            <div class="user-avatar">AD</div>
+            <div class="user-info">
+              <b>Dr. Admin Verma</b>
+              <small>System Auditor</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- GOVERNANCE MAIN CONTENT -->
+      <main class="content-area">
+        <div class="page-header">
+          <div class="page-title-group">
+            <div class="badge-tag primary">TRANSPARENCY · TRACEABILITY · ACCOUNTABILITY</div>
+            <h1>Platform Governance & Audit Center</h1>
+            <p>Manage partner authorizations, inspect automated risk anomaly detectors, and review immutable system logs.</p>
+          </div>
+
+          <div class="page-actions">
+            <button class="btn btn-secondary" onclick="searchAuditLogs('')">↻ Refresh Logs</button>
+            <button class="btn btn-primary" onclick="openModal('emergencyModal')">🚨 Broadcast SOS Alert</button>
+          </div>
+        </div>
+
+        <!-- GOVERNANCE TOP TWO-COLUMN GRID -->
+        <div class="admin-columns">
+          <!-- ORGANIZATION VERIFICATION DESK -->
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Partner Verification Desk</h3>
+                <small>Review clinical non-profit licenses and hospital credentials</small>
+              </div>
+              <span class="pill ok">4 VERIFIED</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+              {% if orgs %}
+                {% for o in orgs %}
+                <div class="verify-row">
+                  <div class="verify-info">
+                    <b>{{ o.name }}</b>
+                    <small>{{ o.type }} · {{ o.location }} · Contact: {{ o.contact_person }}</small>
+                  </div>
+                  
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    {% if o.verified == 1 %}
+                      <span class="pill ok">Verified</span>
+                      <button class="btn btn-secondary btn-sm" onclick="toggleOrgVerification('{{ o.id }}', 1)" title="Revoke Verification">
+                        Revoke
+                      </button>
+                    {% else %}
+                      <span class="pill warn">Pending</span>
+                      <button class="btn btn-primary btn-sm" onclick="toggleOrgVerification('{{ o.id }}', 0)" title="Approve Non-Profit License">
+                        Approve ✓
+                      </button>
+                    {% endif %}
+                  </div>
+                </div>
+                {% endfor %}
+              {% else %}
+                <!-- Fallback Static Rows for Live Server Preview -->
+                <div class="verify-row">
+                  <div class="verify-info"><b>ABC Healthcare NGO</b><small>NGO · Meerut Cantt · Contact: Dr. A. Verma</small></div>
+                  <div style="display: flex; align-items: center; gap: 8px;"><span class="pill ok">Verified</span><button class="btn btn-secondary btn-sm" onclick="toggleOrgVerification('1', 1)">Revoke</button></div>
+                </div>
+                <div class="verify-row">
+                  <div class="verify-info"><b>Jan Arogya Trust</b><small>NGO · Modinagar · Contact: M. Sharma</small></div>
+                  <div style="display: flex; align-items: center; gap: 8px;"><span class="pill warn">Pending</span><button class="btn btn-primary btn-sm" onclick="toggleOrgVerification('4', 0)">Approve ✓</button></div>
+                </div>
+                <div class="verify-row">
+                  <div class="verify-info"><b>Sehat Relief Foundation</b><small>Charity Clinic · Ghaziabad East</small></div>
+                  <div style="display: flex; align-items: center; gap: 8px;"><span class="pill ok">Verified</span><button class="btn btn-secondary btn-sm" onclick="toggleOrgVerification('2', 1)">Revoke</button></div>
+                </div>
+              {% endif %}
+            </div>
+          </section>
+
+          <!-- RISK ANOMALY DETECTION & EMERGENCY TRIAGE -->
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Automated Risk Anomaly Detector</h3>
+                <small>Heuristic surveillance against hoarding and irregular transfers</small>
+              </div>
+              <span class="pill high">2 SURVEILLANCE FLAGS</span>
+            </div>
+
+            <div class="anomaly-alert">
+              <b>⚡ High Intake Surge Flagged</b>
+              <p>Paracetamol 650mg intake volume exceeded normal 30-day velocity by 240% at CityCare Pharmacy Meerut node.</p>
+            </div>
+
+            <div class="anomaly-alert" style="background: var(--amber-50); border-color: var(--amber-100);">
+              <b style="color: var(--amber-700);">⏱ Near-Expiry Shelf Life Threshold</b>
+              <p style="color: var(--slate-700);">Amoxicillin 500mg (Batch AMX-24019) has 22 days remaining with 180 unallocated units.</p>
+            </div>
+
+            <!-- ACTIVE EMERGENCY CALLS -->
+            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--slate-100);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <b style="font-size: 13px; color: var(--rose-600);">🚨 Active Regional Emergency Calls</b>
+                <span class="badge-tag danger">2 OPEN</span>
+              </div>
+
+              {% if emergencies %}
+                {% for e in emergencies %}
+                {% if e.status == 'Open' %}
+                <div style="background: var(--slate-50); border: 1px solid var(--border-subtle); padding: 10px 14px; border-radius: var(--radius-md); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <div>
+                    <b style="color: var(--slate-900);">{{ e.medicine }} ({{ e.quantity }} units)</b>
+                    <div style="color: var(--slate-500);">{{ e.location }} · Req: {{ e.required_by }}</div>
+                  </div>
+                  <button class="btn btn-sm btn-secondary" onclick="resolveEmergency('{{ e.id }}')">Mark Resolved</button>
+                </div>
+                {% endif %}
+                {% endfor %}
+              {% else %}
+                <div style="background: var(--slate-50); border: 1px solid var(--border-subtle); padding: 10px 14px; border-radius: var(--radius-md); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <div>
+                    <b style="color: var(--slate-900);">Paracetamol 650mg & ORS (300 units)</b>
+                    <div style="color: var(--slate-500);">Meerut District Flood Relief Camp · Req: District Health Officer Meerut</div>
+                  </div>
+                  <button class="btn btn-sm btn-secondary" onclick="resolveEmergency('1')">Mark Resolved</button>
+                </div>
+              {% endif %}
+            </div>
+          </section>
+        </div>
+
+        <!-- IMMUTABLE AUDIT TRAIL LOGS (WIDE PANEL) -->
+        <section class="panel wide">
+          <div class="panel-header">
+            <div>
+              <h3>Cryptographic Audit Trail</h3>
+              <small>Immutable, sequential record of all platform interactions</small>
+            </div>
+            <div class="search-box" style="max-width: 320px;">
+              <span class="search-icon">🔍</span>
+              <input id="auditSearchInput" placeholder="Filter audit trail by keyword…">
+            </div>
+          </div>
+
+          <div class="audit-stream" id="auditLogContainer">
+            <div class="audit-entry">
+              <div class="audit-icon">✓</div>
+              <div class="audit-content">
+                <b>Platform Initialized & Node Synced</b>
+                <span>Meerut Regional Gateway · Initiated by System Daemon</span>
+                <span class="pill ok" style="font-size: 10px; margin-left: 6px;">Ready → Operational</span>
+              </div>
+              <div class="audit-time">1 day ago</div>
+            </div>
+
+            <div class="audit-entry">
+              <div class="audit-icon">✓</div>
+              <div class="audit-content">
+                <b>Medicine Batch Intake: Paracetamol 650mg (PCM-24081)</b>
+                <span>500 units recorded · Initiated by Demo Admin</span>
+                <span class="pill warn" style="font-size: 10px; margin-left: 6px;">New → High Surplus Risk</span>
+              </div>
+              <div class="audit-time">6 hrs ago</div>
+            </div>
+
+            <div class="audit-entry">
+              <div class="audit-icon">✓</div>
+              <div class="audit-content">
+                <b>AI Surplus Allocation Triggered</b>
+                <span>PCM-24081 matched to ABC Healthcare NGO · Initiated by AI Match Engine</span>
+                <span class="pill info" style="font-size: 10px; margin-left: 6px;">Pending → Matched</span>
+              </div>
+              <div class="audit-time">4 hrs ago</div>
+            </div>
+
+            <div class="audit-entry">
+              <div class="audit-icon">↗</div>
+              <div class="audit-content">
+                <b>Consignment Dispatched: TRK-26296-01</b>
+                <span>CityCare Pharmacy → ABC Healthcare NGO · Initiated by Logistics Node</span>
+                <span class="pill info" style="font-size: 10px; margin-left: 6px;">Scheduled → In Transit</span>
+              </div>
+              <div class="audit-time">1 hr ago</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer-site">
+    <div class="footer-content">
+      <div class="footer-col brand-col">
+        <div class="brand footer-brand">
+          <div class="brand-badge small">DS</div>
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+        </div>
+        <p class="footer-desc">Intelligent medicine lifecycle governance, AI surplus prediction, and verified redistribution network for India's healthcare supply chain.</p>
+        <div class="footer-chips">
+          <span class="chip">Smart India Hackathon 2026</span>
+          <span class="chip">Problem #26296</span>
+          <span class="chip">Team Cheek Syndicate</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Core Modules</h4>
+        <ul>
+          <li><a href="dashboard.html">Command Center Pulse</a></li>
+          <li><a href="inventory.html">Batch Inventory &amp; Expiry</a></li>
+          <li><a href="matching.html">AI Allocation Engine</a></li>
+          <li><a href="transfers.html">Traceable Transfer Pipeline</a></li>
+          <li><a href="disposal.html">Eco-Compliance &amp; Disposal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Regional Node</h4>
+        <div class="node-card">
+          <div class="node-status">● Live Regional Sync</div>
+          <p>Meerut District · UP Zone 01</p>
+          <small>Connected to 4 Hospitals, 8 Pharmacies, 3 Verified NGOs</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DAWAI-SETU Platform. Hackathon Demonstration Prototype · Built for high social &amp; environmental impact.</p>
+      <div class="footer-links">
+        <a href="#privacy" onclick="showToast('Data Governance Policy: DPDP Act 2023 Compliant'); return false;">Privacy &amp; Compliance</a>
+        <a href="#terms" onclick="showToast('Standard Healthcare Provider Protocol'); return false;">Terms of Use</a>
+        <a href="admin.html">Audit Logs</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global Emergency SOS Modal -->
+  <div class="modal-overlay" id="emergencyModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('emergencyModal')">×</button>
+      <div class="modal-header">
+        <div class="badge-tag danger">EMERGENCY DISPATCH PROTOCOL</div>
+        <h2>🚨 Broadcast Medicine Need</h2>
+        <p>Trigger an instant priority allocation alert across all registered donors and hospital nodes in the Meerut-NCR cluster.</p>
+      </div>
+      <form onsubmit="handleEmergencySubmit(event)">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Required Medicine / Strength *</label>
+            <input name="medicine" required placeholder="e.g. Paracetamol 650mg &amp; ORS Sachets">
+          </div>
+          <div class="form-group">
+            <label>Required Quantity (Units) *</label>
+            <input name="quantity" type="number" min="1" required placeholder="e.g. 200">
+          </div>
+          <div class="form-group">
+            <label>Urgency Level *</label>
+            <select name="urgency" required>
+              <option value="Critical" selected>Critical (Immediate threat to care)</option>
+              <option value="High">High (Needed within 12 hours)</option>
+              <option value="Medium">Medium (Needed within 48 hours)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Target Facility / Location *</label>
+            <input name="location" required placeholder="e.g. Meerut Community Relief Camp">
+          </div>
+          <div class="form-group">
+            <label>Requesting Authority / Doctor *</label>
+            <input name="required_by" required placeholder="e.g. Dr. A. Verma (CMO)">
+          </div>
+          <div class="form-group">
+            <label>Emergency Contact Number *</label>
+            <input name="contact" required placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group full">
+            <label>Clinical Context / Outbreak Reason *</label>
+            <textarea name="reason" rows="3" required placeholder="Describe clinical reason (e.g. Sudden pediatric gastro flare, seasonal flood relief triage)"></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('emergencyModal')">Cancel</button>
+          <button type="submit" class="btn btn-danger">Broadcast Priority Alert →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

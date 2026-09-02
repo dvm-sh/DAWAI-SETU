@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traceable Transfers | DAWAI-SETU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="../static/app.js"></script>
+  <script defer src="/static/app.js"></script>
+  <script defer src="app.js"></script>
+</head>
+
+<body data-page="transfers">
+  <!-- Real-time Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Global Navigation -->
+  <header class="nav-bar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">
+        <div class="brand-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+          <span class="brand-tag">LIFECYCLE & REDISTRIBUTION</span>
+        </div>
+      </a>
+
+      <div class="nav-center">
+        <div class="node-pill">
+          <span class="beacon"></span>
+          <span>Meerut Node · Active</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="inventory.html" class="nav-link">Inventory</a>
+        <a href="matching.html" class="nav-link">Smart Matching</a>
+        <a href="transfers.html" class="nav-link active">Transfers</a>
+        <a href="disposal.html" class="nav-link">Disposal</a>
+        <a href="admin.html" class="nav-link">Governance</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-sos" onclick="openModal('emergencyModal')" title="Broadcast Emergency Medicine Request">
+          <span class="sos-dot"></span>
+          <span>🚨 SOS Broadcast</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <div class="main-wrapper">
+    <div class="app-shell">
+      <!-- SIDEBAR NAVIGATION -->
+      <aside class="sidebar">
+        <div class="side-header">
+          <div class="side-title">COMMAND CENTER</div>
+          <span class="side-subtitle">CHAIN OF CUSTODY</span>
+        </div>
+        
+        <div class="sidebar-nav">
+          <a href="dashboard.html" class="side-item">
+            <span class="side-icon">▦</span>
+            <span>Overview & Pulse</span>
+          </a>
+          <a href="inventory.html" class="side-item">
+            <span class="side-icon">▤</span>
+            <span>Batch Inventory</span>
+          </a>
+          <a href="matching.html" class="side-item">
+            <span class="side-icon">⌖</span>
+            <span>AI Smart Matching</span>
+          </a>
+          <a href="transfers.html" class="side-item active">
+            <span class="side-icon">↗</span>
+            <span>Traceable Transfers</span>
+          </a>
+          <a href="disposal.html" class="side-item">
+            <span class="side-icon">♻</span>
+            <span>Eco-Disposal</span>
+          </a>
+          <a href="admin.html" class="side-item">
+            <span class="side-icon">⚙</span>
+            <span>Governance & Audit</span>
+          </a>
+        </div>
+
+        <div class="side-footer">
+          <div class="user-profile">
+            <div class="user-avatar">AD</div>
+            <div class="user-info">
+              <b>Dr. Admin Verma</b>
+              <small>Logistics Officer</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- TRANSFERS MAIN CONTENT -->
+      <main class="content-area">
+        <div class="page-header">
+          <div class="page-title-group">
+            <div class="badge-tag primary">END-TO-END VISIBILITY</div>
+            <h1>Traceable Transfer Pipeline</h1>
+            <p>Every consignment movement is logged cryptographically across 6 distinct custody verification stages.</p>
+          </div>
+
+          <div class="page-actions">
+            <a href="matching.html" class="btn btn-primary">+ New Transfer Offer</a>
+          </div>
+        </div>
+
+        <!-- 6-STAGE VISUAL LIFECYCLE STEPPER CARD -->
+        <div class="stepper-card">
+          <div class="route-header">
+            <div class="route-badge">
+              <span>MEERUT CENTRAL HUB</span>
+              <span>⟶</span>
+              <span>NCR HEALTHCARE CORRIDOR</span>
+            </div>
+            <span class="badge-tag success">LIVE DISPATCH CORRIDOR</span>
+          </div>
+
+          <div class="stepper">
+            <div class="step-item done">
+              <div class="step-bubble">✓</div>
+              <span class="step-title">1. Pending</span>
+              <small style="color:var(--slate-400); font-size:10px;">Offer Dispatched</small>
+            </div>
+
+            <div class="step-item done">
+              <div class="step-bubble">✓</div>
+              <span class="step-title">2. Accepted</span>
+              <small style="color:var(--slate-400); font-size:10px;">NGO Confirmed</small>
+            </div>
+
+            <div class="step-item done">
+              <div class="step-bubble">✓</div>
+              <span class="step-title">3. Scheduled</span>
+              <small style="color:var(--slate-400); font-size:10px;">Driver Assigned</small>
+            </div>
+
+            <div class="step-item active">
+              <div class="step-bubble">4</div>
+              <span class="step-title">4. In Transit</span>
+              <small style="color:var(--primary-600); font-size:10px; font-weight:700;">On Vehicle</small>
+            </div>
+
+            <div class="step-item">
+              <div class="step-bubble">5</div>
+              <span class="step-title">5. Verified</span>
+              <small style="color:var(--slate-400); font-size:10px;">Pharmacist QA</small>
+            </div>
+
+            <div class="step-item">
+              <div class="step-bubble">6</div>
+              <span class="step-title">6. Completed</span>
+              <small style="color:var(--slate-400); font-size:10px;">Stock Delivered</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRANSFERS DATA TABLE -->
+        <div class="table-card">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tracking Code / ID</th>
+                  <th>Medicine & Batch</th>
+                  <th>Consignment Qty</th>
+                  <th>Origin Donor</th>
+                  <th>Destination Beneficiary</th>
+                  <th>Pipeline Stage</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if transfers %}
+                  {% for t in transfers %}
+                  <tr>
+                    <td>
+                      <b>{{ t.tracking_code or ('#TRK-26296-%02d' % t.id) }}</b>
+                      <small style="color: var(--slate-400);">Logged: {{ t.created }}</small>
+                    </td>
+                    <td>
+                      <div class="table-med-name">
+                        <b>{{ t.medicine }}</b>
+                        <small>Batch: {{ t.batch }}</small>
+                      </div>
+                    </td>
+                    <td>
+                      <strong style="font-size: 14px; color: var(--slate-900);">{{ t.quantity }}</strong>
+                      <small style="color: var(--slate-400);">units</small>
+                    </td>
+                    <td>
+                      <b>{{ t.donor }}</b>
+                      <small style="color: var(--slate-400);">Meerut Hub</small>
+                    </td>
+                    <td>
+                      <b>{{ t.recipient }}</b>
+                      <small style="color: var(--emerald-600); font-weight: 600;">✓ Verified Recipient</small>
+                    </td>
+                    <td>
+                      <span class="pill {{ 'ok' if t.status == 'Completed' else ('info' if t.status in ['In Transit', 'Collected'] else 'warn') }}">
+                        {{ t.status }}
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <div style="display: inline-flex; gap: 6px; justify-content: flex-end;">
+                        <button class="btn btn-secondary btn-sm" onclick="previewManifest('{{ t.id }}', '{{ t.medicine }}', '{{ t.batch }}', '{{ t.quantity }}', '{{ t.donor }}', '{{ t.recipient }}', '{{ t.status }}', '{{ t.tracking_code }}')">
+                          QR Waybill
+                        </button>
+
+                        {% if t.status != 'Completed' %}
+                          <button class="btn btn-primary btn-sm" onclick="advanceTransfer('{{ t.id }}', '{{ t.status }}')">
+                            Advance Stage →
+                          </button>
+                        {% else %}
+                          <span class="badge-tag success" style="font-size: 10px;">CLOSED</span>
+                        {% endif %}
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                {% else %}
+                  <!-- Fallback Static Rows for Live Server Preview -->
+                  <tr>
+                    <td><b>#TRK-26296-01</b><small style="color: var(--slate-400);">Logged: 6 hrs ago</small></td>
+                    <td><div class="table-med-name"><b>Paracetamol 650mg</b><small>Batch: PCM-24081</small></div></td>
+                    <td><strong style="font-size: 14px; color: var(--slate-900);">200</strong> <small style="color: var(--slate-400);">units</small></td>
+                    <td><b>CityCare Pharmacy</b><small style="color: var(--slate-400);">Meerut Hub</small></td>
+                    <td><b>ABC Healthcare NGO</b><small style="color: var(--emerald-600); font-weight: 600;">✓ Verified Recipient</small></td>
+                    <td><span class="pill info">In Transit</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-secondary btn-sm" onclick="previewManifest('1', 'Paracetamol 650mg', 'PCM-24081', 200, 'CityCare Pharmacy', 'ABC Healthcare NGO', 'In Transit', 'TRK-26296-01')">QR Waybill</button>
+                      <button class="btn btn-primary btn-sm" onclick="advanceTransfer('1', 'In Transit')">Advance Stage →</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>#TRK-26296-02</b><small style="color: var(--slate-400);">Logged: 2 days ago</small></td>
+                    <td><div class="table-med-name"><b>ORS Sachet Hydration</b><small>Batch: ORS-24110</small></div></td>
+                    <td><strong style="font-size: 14px; color: var(--slate-900);">300</strong> <small style="color: var(--slate-400);">units</small></td>
+                    <td><b>Seva Medical Store</b><small style="color: var(--slate-400);">Meerut Hub</small></td>
+                    <td><b>NCR Community Hospital</b><small style="color: var(--emerald-600); font-weight: 600;">✓ Verified Recipient</small></td>
+                    <td><span class="pill ok">Completed</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-secondary btn-sm" onclick="previewManifest('2', 'ORS Sachet Hydration', 'ORS-24110', 300, 'Seva Medical Store', 'NCR Community Hospital', 'Completed', 'TRK-26296-02')">QR Waybill</button>
+                      <span class="badge-tag success" style="font-size: 10px;">CLOSED</span>
+                    </td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer-site">
+    <div class="footer-content">
+      <div class="footer-col brand-col">
+        <div class="brand footer-brand">
+          <div class="brand-badge small">DS</div>
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+        </div>
+        <p class="footer-desc">Intelligent medicine lifecycle governance, AI surplus prediction, and verified redistribution network for India's healthcare supply chain.</p>
+        <div class="footer-chips">
+          <span class="chip">Smart India Hackathon 2026</span>
+          <span class="chip">Problem #26296</span>
+          <span class="chip">Team Cheek Syndicate</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Core Modules</h4>
+        <ul>
+          <li><a href="dashboard.html">Command Center Pulse</a></li>
+          <li><a href="inventory.html">Batch Inventory &amp; Expiry</a></li>
+          <li><a href="matching.html">AI Allocation Engine</a></li>
+          <li><a href="transfers.html">Traceable Transfer Pipeline</a></li>
+          <li><a href="disposal.html">Eco-Compliance &amp; Disposal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Regional Node</h4>
+        <div class="node-card">
+          <div class="node-status">● Live Regional Sync</div>
+          <p>Meerut District · UP Zone 01</p>
+          <small>Connected to 4 Hospitals, 8 Pharmacies, 3 Verified NGOs</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DAWAI-SETU Platform. Hackathon Demonstration Prototype · Built for high social &amp; environmental impact.</p>
+      <div class="footer-links">
+        <a href="#privacy" onclick="showToast('Data Governance Policy: DPDP Act 2023 Compliant'); return false;">Privacy &amp; Compliance</a>
+        <a href="#terms" onclick="showToast('Standard Healthcare Provider Protocol'); return false;">Terms of Use</a>
+        <a href="admin.html">Audit Logs</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global QR / Consignment Note Modal -->
+  <div class="modal-overlay" id="manifestModal">
+    <div class="modal-dialog qr-dialog">
+      <button class="modal-close" onclick="closeModal('manifestModal')">×</button>
+      <div class="modal-header text-center">
+        <div class="badge-tag success">DIGITAL CONSIGNMENT NOTE</div>
+        <h2 id="manifestTitle">Batch Transfer Manifest</h2>
+        <p id="manifestSubtitle">Verified cryptographic chain-of-custody tracking</p>
+      </div>
+      <div class="manifest-card">
+        <div class="qr-visual">
+          <div class="qr-box">
+            <div class="qr-pattern">
+              <svg width="140" height="140" viewBox="0 0 100 100" fill="#0c3b38">
+                <rect width="28" height="28" x="6" y="6" rx="4"/>
+                <rect width="16" height="16" x="12" y="12" fill="#fff" rx="2"/>
+                <rect width="8" height="8" x="16" y="16" fill="#0c3b38"/>
+                
+                <rect width="28" height="28" x="66" y="6" rx="4"/>
+                <rect width="16" height="16" x="72" y="12" fill="#fff" rx="2"/>
+                <rect width="8" height="8" x="76" y="16" fill="#0c3b38"/>
+                
+                <rect width="28" height="28" x="6" y="66" rx="4"/>
+                <rect width="16" height="16" x="12" y="72" fill="#fff" rx="2"/>
+                <rect width="8" height="8" x="16" y="76" fill="#0c3b38"/>
+                
+                <rect width="8" height="8" x="40" y="10" rx="1"/>
+                <rect width="8" height="8" x="52" y="10" rx="1"/>
+                <rect width="8" height="8" x="40" y="24" rx="1"/>
+                <rect width="8" height="8" x="40" y="44" rx="1"/>
+                <rect width="8" height="8" x="52" y="38" rx="1"/>
+                <rect width="8" height="8" x="66" y="48" rx="1"/>
+                <rect width="8" height="8" x="78" y="40" rx="1"/>
+                <rect width="8" height="8" x="40" y="66" rx="1"/>
+                <rect width="8" height="8" x="54" y="60" rx="1"/>
+                <rect width="8" height="8" x="70" y="74" rx="1"/>
+                <rect width="8" height="8" x="84" y="84" rx="1"/>
+                <rect width="8" height="8" x="56" y="80" rx="1"/>
+              </svg>
+            </div>
+            <span class="qr-code-text" id="manifestTrackingCode">TRK-26296-01</span>
+          </div>
+        </div>
+        <div class="manifest-details" id="manifestDetailsContent"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="window.print()">Print Waybill</button>
+        <button class="btn btn-primary" onclick="closeModal('manifestModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Emergency SOS Modal -->
+  <div class="modal-overlay" id="emergencyModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('emergencyModal')">×</button>
+      <div class="modal-header">
+        <div class="badge-tag danger">EMERGENCY DISPATCH PROTOCOL</div>
+        <h2>🚨 Broadcast Medicine Need</h2>
+        <p>Trigger an instant priority allocation alert across all registered donors and hospital nodes in the Meerut-NCR cluster.</p>
+      </div>
+      <form onsubmit="handleEmergencySubmit(event)">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Required Medicine / Strength *</label>
+            <input name="medicine" required placeholder="e.g. Paracetamol 650mg &amp; ORS Sachets">
+          </div>
+          <div class="form-group">
+            <label>Required Quantity (Units) *</label>
+            <input name="quantity" type="number" min="1" required placeholder="e.g. 200">
+          </div>
+          <div class="form-group">
+            <label>Urgency Level *</label>
+            <select name="urgency" required>
+              <option value="Critical" selected>Critical (Immediate threat to care)</option>
+              <option value="High">High (Needed within 12 hours)</option>
+              <option value="Medium">Medium (Needed within 48 hours)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Target Facility / Location *</label>
+            <input name="location" required placeholder="e.g. Meerut Community Relief Camp">
+          </div>
+          <div class="form-group">
+            <label>Requesting Authority / Doctor *</label>
+            <input name="required_by" required placeholder="e.g. Dr. A. Verma (CMO)">
+          </div>
+          <div class="form-group">
+            <label>Emergency Contact Number *</label>
+            <input name="contact" required placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group full">
+            <label>Clinical Context / Outbreak Reason *</label>
+            <textarea name="reason" rows="3" required placeholder="Describe clinical reason (e.g. Sudden pediatric gastro flare, seasonal flood relief triage)"></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('emergencyModal')">Cancel</button>
+          <button type="submit" class="btn btn-danger">Broadcast Priority Alert →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

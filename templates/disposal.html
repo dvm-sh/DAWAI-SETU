@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eco-Disposal & Compliance | DAWAI-SETU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="../static/app.js"></script>
+  <script defer src="/static/app.js"></script>
+  <script defer src="app.js"></script>
+</head>
+
+<body data-page="disposal">
+  <!-- Real-time Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Global Navigation -->
+  <header class="nav-bar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">
+        <div class="brand-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+          <span class="brand-tag">LIFECYCLE & REDISTRIBUTION</span>
+        </div>
+      </a>
+
+      <div class="nav-center">
+        <div class="node-pill">
+          <span class="beacon"></span>
+          <span>Meerut Node · Active</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="inventory.html" class="nav-link">Inventory</a>
+        <a href="matching.html" class="nav-link">Smart Matching</a>
+        <a href="transfers.html" class="nav-link">Transfers</a>
+        <a href="disposal.html" class="nav-link active">Disposal</a>
+        <a href="admin.html" class="nav-link">Governance</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-sos" onclick="openModal('emergencyModal')" title="Broadcast Emergency Medicine Request">
+          <span class="sos-dot"></span>
+          <span>🚨 SOS Broadcast</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <div class="main-wrapper">
+    <div class="app-shell">
+      <!-- SIDEBAR NAVIGATION -->
+      <aside class="sidebar">
+        <div class="side-header">
+          <div class="side-title">COMMAND CENTER</div>
+          <span class="side-subtitle">SAFE ECO-DISPOSAL</span>
+        </div>
+        
+        <div class="sidebar-nav">
+          <a href="dashboard.html" class="side-item">
+            <span class="side-icon">▦</span>
+            <span>Overview & Pulse</span>
+          </a>
+          <a href="inventory.html" class="side-item">
+            <span class="side-icon">▤</span>
+            <span>Batch Inventory</span>
+          </a>
+          <a href="matching.html" class="side-item">
+            <span class="side-icon">⌖</span>
+            <span>AI Smart Matching</span>
+          </a>
+          <a href="transfers.html" class="side-item">
+            <span class="side-icon">↗</span>
+            <span>Traceable Transfers</span>
+          </a>
+          <a href="disposal.html" class="side-item active">
+            <span class="side-icon">♻</span>
+            <span>Eco-Disposal</span>
+          </a>
+          <a href="admin.html" class="side-item">
+            <span class="side-icon">⚙</span>
+            <span>Governance & Audit</span>
+          </a>
+        </div>
+
+        <div class="side-footer">
+          <div class="user-profile">
+            <div class="user-avatar">AD</div>
+            <div class="user-info">
+              <b>Dr. Admin Verma</b>
+              <small>Compliance Officer</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- DISPOSAL MAIN CONTENT -->
+      <main class="content-area">
+        <div class="page-header">
+          <div class="page-title-group">
+            <div class="badge-tag danger">CPCB COMPLIANCE PROTOCOL</div>
+            <h1>Responsible Eco-Disposal Portal</h1>
+            <p>Expired or non-redistributable stock is strictly isolated and routed to certified biomedical waste facilities.</p>
+          </div>
+
+          <div class="page-actions">
+            <button class="btn btn-danger" onclick="openModal('disposalModal')">+ Create Disposal Manifest</button>
+          </div>
+        </div>
+
+        <!-- ECO-IMPACT BANNER -->
+        <div class="disposal-banner">
+          <div>
+            <div class="badge-tag warning" style="background: rgba(254,243,199,0.2); color: var(--amber-400);">ENVIRONMENTAL HAZARD PREVENTION</div>
+            <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; margin: 8px 0;">Zero Groundwater Contamination Standard</h2>
+            <p style="color: var(--slate-300); font-size: 13px; max-width: 500px;">Ensuring active pharmaceutical ingredients (APIs) are neutralized under high-temperature incineration per Biomedical Waste Management Rules, 2016.</p>
+          </div>
+
+          <div class="eco-stats">
+            <div class="eco-metric">
+              <strong>27.5 kg</strong>
+              <small>Hazard Diverted</small>
+            </div>
+            <div class="eco-metric">
+              <strong>11.5 kg</strong>
+              <small>CO₂e Neutralized</small>
+            </div>
+            <div class="eco-metric">
+              <strong style="color: var(--emerald-400);">100%</strong>
+              <small>CPCB Audited</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- DISPOSAL CUSTODY PIPELINE BAR -->
+        <div class="disposal-pipeline-bar">
+          <div class="pipe-step"><span>01</span> Expired Stock Isolated</div>
+          <div class="pipe-arrow">⟶</div>
+          <div class="pipe-step"><span>02</span> Manifest Generated</div>
+          <div class="pipe-arrow">⟶</div>
+          <div class="pipe-step"><span>03</span> Authorized Partner Assigned</div>
+          <div class="pipe-arrow">⟶</div>
+          <div class="pipe-step"><span>04</span> Secure Armored Collection</div>
+          <div class="pipe-arrow">⟶</div>
+          <div class="pipe-step"><span>05</span> High-Temp Neutralization</div>
+          <div class="pipe-arrow">⟶</div>
+          <div class="pipe-step"><span>06</span> Destruction Certificate</div>
+        </div>
+
+        <!-- REGULATORY NOTICE -->
+        <div style="background: var(--amber-50); border: 1px solid var(--amber-100); border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 24px; font-size: 12.5px; color: var(--amber-700); display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 18px;">⚠️</span>
+          <span><b>Statutory Mandate:</b> Expired or damaged pharmaceuticals must NEVER be resold, returned to unverified parties, or disposed of in domestic municipal waste. All destructions must generate a signed Form IV manifest.</span>
+        </div>
+
+        <!-- DISPOSAL REQUESTS DATA TABLE -->
+        <div class="table-card">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Manifest ID</th>
+                  <th>Medicine & Batch</th>
+                  <th>Quantity</th>
+                  <th>Expiry Date</th>
+                  <th>Disposal Reason</th>
+                  <th>Authorized Partner</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if disposal %}
+                  {% for d in disposal %}
+                  <tr>
+                    <td>
+                      <b>{{ d.manifest_id or ('#MAN-DISP-%04d' % d.id) }}</b>
+                      <small style="color: var(--slate-400);">Logged: {{ d.created }}</small>
+                    </td>
+                    <td>
+                      <div class="table-med-name">
+                        <b>{{ d.medicine }}</b>
+                        <small>Batch: {{ d.batch }}</small>
+                      </div>
+                    </td>
+                    <td>
+                      <strong style="font-size: 14px; color: var(--slate-900);">{{ d.quantity }}</strong>
+                      <small style="color: var(--slate-400);">units</small>
+                    </td>
+                    <td>
+                      <b style="color: var(--rose-600);">{{ d.expiry }}</b>
+                      <small>Safety cutoff</small>
+                    </td>
+                    <td>
+                      <span style="font-size: 12px; color: var(--slate-600);">{{ d.reason }}</span>
+                    </td>
+                    <td>
+                      <b>{{ d.partner }}</b>
+                      <small style="color: var(--emerald-600); font-weight: 600;">✓ CPCB Certified</small>
+                    </td>
+                    <td>
+                      <span class="pill {{ 'ok' if d.status == 'Disposed' else 'warn' }}">
+                        {{ d.status }}
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Certificate #CERT-CPCB-{{ d.id }}: Neutralization Completed Successfully');">
+                        View Certificate
+                      </button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                {% else %}
+                  <!-- Fallback Static Rows for Live Server Preview -->
+                  <tr>
+                    <td><b>MAN-DISP-0841</b><small style="color: var(--slate-400);">Logged: Yesterday</small></td>
+                    <td><div class="table-med-name"><b>Cough Syrup Pediatric</b><small>Batch: CSP-24012</small></div></td>
+                    <td><strong style="font-size: 14px; color: var(--slate-900);">40</strong> <small style="color: var(--slate-400);">units</small></td>
+                    <td><b style="color: var(--rose-600);">2026-08-25</b><small>Expired</small></td>
+                    <td><span style="font-size: 12px; color: var(--slate-600);">Passed safety shelf-life threshold</span></td>
+                    <td><b>Meerut Biomedical Waste Management Ltd</b><small style="color: var(--emerald-600); font-weight: 600;">✓ CPCB Certified</small></td>
+                    <td><span class="pill ok">Disposed</span></td>
+                    <td style="text-align: right;"><button class="btn btn-secondary btn-sm" onclick="showToast('Certificate #CERT-CPCB-0841: Safe Thermal Incineration Complete');">View Certificate</button></td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer-site">
+    <div class="footer-content">
+      <div class="footer-col brand-col">
+        <div class="brand footer-brand">
+          <div class="brand-badge small">DS</div>
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+        </div>
+        <p class="footer-desc">Intelligent medicine lifecycle governance, AI surplus prediction, and verified redistribution network for India's healthcare supply chain.</p>
+        <div class="footer-chips">
+          <span class="chip">Smart India Hackathon 2026</span>
+          <span class="chip">Problem #26296</span>
+          <span class="chip">Team Cheek Syndicate</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Core Modules</h4>
+        <ul>
+          <li><a href="dashboard.html">Command Center Pulse</a></li>
+          <li><a href="inventory.html">Batch Inventory &amp; Expiry</a></li>
+          <li><a href="matching.html">AI Allocation Engine</a></li>
+          <li><a href="transfers.html">Traceable Transfer Pipeline</a></li>
+          <li><a href="disposal.html">Eco-Compliance &amp; Disposal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Regional Node</h4>
+        <div class="node-card">
+          <div class="node-status">● Live Regional Sync</div>
+          <p>Meerut District · UP Zone 01</p>
+          <small>Connected to 4 Hospitals, 8 Pharmacies, 3 Verified NGOs</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DAWAI-SETU Platform. Hackathon Demonstration Prototype · Built for high social &amp; environmental impact.</p>
+      <div class="footer-links">
+        <a href="#privacy" onclick="showToast('Data Governance Policy: DPDP Act 2023 Compliant'); return false;">Privacy &amp; Compliance</a>
+        <a href="#terms" onclick="showToast('Standard Healthcare Provider Protocol'); return false;">Terms of Use</a>
+        <a href="admin.html">Audit Logs</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CREATE DISPOSAL MANIFEST MODAL -->
+  <div class="modal-overlay" id="disposalModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('disposalModal')">×</button>
+      <div class="modal-header">
+        <div class="badge-tag danger">CPCB FORM IV</div>
+        <h2>Generate Disposal Manifest</h2>
+        <p>Initiate a compliant biomedical waste pickup request for expired or degraded medicines.</p>
+      </div>
+      <form onsubmit="handleDisposalSubmit(event)">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Medicine Name & Strength *</label>
+            <input name="medicine" required placeholder="e.g. Cough Syrup Pediatric / Expired Suspensions">
+          </div>
+          <div class="form-group">
+            <label>Batch Number *</label>
+            <input name="batch" required placeholder="e.g. CSP-24012" style="text-transform: uppercase;">
+          </div>
+          <div class="form-group">
+            <label>Quantity for Destruction (Units) *</label>
+            <input name="quantity" type="number" min="1" required placeholder="e.g. 40">
+          </div>
+          <div class="form-group">
+            <label>Recorded Expiry Date</label>
+            <input name="expiry" type="date">
+          </div>
+          <div class="form-group">
+            <label>Authorized Biomedical Waste Partner *</label>
+            <select name="partner" required>
+              <option value="Meerut Biomedical Waste Management Ltd">Meerut Biomedical Waste Management Ltd</option>
+              <option value="Synergy Waste Management NCR">Synergy Waste Management NCR</option>
+              <option value="Central Pollution Control Board Facility 02">Central Pollution Control Board Facility 02</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Reason for Ineligibility / Neutralization *</label>
+            <input name="reason" required value="Passed safety shelf-life threshold and unsuitable for consumption">
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('disposalModal')">Cancel</button>
+          <button type="submit" class="btn btn-danger">Register Disposal Manifest →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Emergency SOS Modal -->
+  <div class="modal-overlay" id="emergencyModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('emergencyModal')">×</button>
+      <div class="modal-header">
+        <div class="badge-tag danger">EMERGENCY DISPATCH PROTOCOL</div>
+        <h2>🚨 Broadcast Medicine Need</h2>
+        <p>Trigger an instant priority allocation alert across all registered donors and hospital nodes in the Meerut-NCR cluster.</p>
+      </div>
+      <form onsubmit="handleEmergencySubmit(event)">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Required Medicine / Strength *</label>
+            <input name="medicine" required placeholder="e.g. Paracetamol 650mg &amp; ORS Sachets">
+          </div>
+          <div class="form-group">
+            <label>Required Quantity (Units) *</label>
+            <input name="quantity" type="number" min="1" required placeholder="e.g. 200">
+          </div>
+          <div class="form-group">
+            <label>Urgency Level *</label>
+            <select name="urgency" required>
+              <option value="Critical" selected>Critical (Immediate threat to care)</option>
+              <option value="High">High (Needed within 12 hours)</option>
+              <option value="Medium">Medium (Needed within 48 hours)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Target Facility / Location *</label>
+            <input name="location" required placeholder="e.g. Meerut Community Relief Camp">
+          </div>
+          <div class="form-group">
+            <label>Requesting Authority / Doctor *</label>
+            <input name="required_by" required placeholder="e.g. Dr. A. Verma (CMO)">
+          </div>
+          <div class="form-group">
+            <label>Emergency Contact Number *</label>
+            <input name="contact" required placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group full">
+            <label>Clinical Context / Outbreak Reason *</label>
+            <textarea name="reason" rows="3" required placeholder="Describe clinical reason (e.g. Sudden pediatric gastro flare, seasonal flood relief triage)"></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('emergencyModal')">Cancel</button>
+          <button type="submit" class="btn btn-danger">Broadcast Priority Alert →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

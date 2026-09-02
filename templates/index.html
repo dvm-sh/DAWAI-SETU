@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DAWAI-SETU | Medicine Lifecycle & Redistribution Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="../static/app.js"></script>
+  <script defer src="/static/app.js"></script>
+  <script defer src="app.js"></script>
+</head>
+
+<body data-page="home">
+  <!-- Real-time Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Global Navigation -->
+  <header class="nav-bar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">
+        <div class="brand-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+          <span class="brand-tag">LIFECYCLE & REDISTRIBUTION</span>
+        </div>
+      </a>
+
+      <div class="nav-center">
+        <div class="node-pill">
+          <span class="beacon"></span>
+          <span>Meerut Node · Active</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" id="mainNav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="inventory.html" class="nav-link">Inventory</a>
+        <a href="matching.html" class="nav-link">Smart Matching</a>
+        <a href="transfers.html" class="nav-link">Transfers</a>
+        <a href="disposal.html" class="nav-link">Disposal</a>
+        <a href="admin.html" class="nav-link">Governance</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-sos" onclick="openModal('emergencyModal')" title="Broadcast Emergency Medicine Request">
+          <span class="sos-dot"></span>
+          <span>🚨 SOS Broadcast</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <div class="main-wrapper">
+    <!-- HERO SECTION -->
+    <section class="hero-landing">
+      <div class="hero-content">
+        <div class="badge-tag primary">SMART INDIA HACKATHON 2026 · PROBLEM #26296</div>
+        <h1>Every medicine has a <span>purpose.</span><br>We help it reach one.</h1>
+        <p>DAWAI-SETU tracks medicine lifecycles at batch level, forecasts surplus risk with AI intelligence, connects verified healthcare institutions, and routes unallocated stock through certified eco-disposal channels.</p>
+        
+        <div class="hero-ctas">
+          <a href="dashboard.html" class="btn btn-primary btn-lg">Launch Command Center →</a>
+          <a href="matching.html" class="btn btn-secondary btn-lg">AI Smart Matching</a>
+        </div>
+
+        <div class="hero-trust-bar">
+          <span>Verified NGO Network</span>
+          <span>Batch-Level Cryptographic Trace</span>
+          <span>AI Predictive Allocation</span>
+          <span>DPDP &amp; Biomedical Safe</span>
+        </div>
+      </div>
+
+      <div class="hero-graphic">
+        <div class="graphic-orb"></div>
+        <div class="float-card float-c1">
+          <small>AI Surplus Alert</small>
+          <strong>High Risk: Paracetamol 650mg</strong>
+          <span>250 excess units · 48 days to expiry</span>
+        </div>
+
+        <div class="float-card float-c2">
+          <small>Verified Match Found</small>
+          <strong>94% Confidence Match</strong>
+          <span>ABC Healthcare NGO · 14 km away</span>
+        </div>
+
+        <div class="graphic-ring">
+          <div class="ring-center">
+            <span>DS-CORE</span>
+            <b>Medicine<br>Lifecycle</b>
+          </div>
+          <div class="node-orbit orb-1">01 Batch Intake</div>
+          <div class="node-orbit orb-2">02 Expiry AI</div>
+          <div class="node-orbit orb-3">03 Smart Match</div>
+          <div class="node-orbit orb-4">04 Transfer</div>
+          <div class="node-orbit orb-5">05 Eco Disposal</div>
+          <div class="node-orbit orb-6">06 Community</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE STATS STRIP -->
+    <section style="background: #ffffff; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="section-wrapper" style="padding: 30px 28px;">
+        <div class="metric-grid" id="metricsGrid" style="margin-bottom: 0;">
+          <div class="metric-card">
+            <span class="metric-label">Tracked Batches</span>
+            <div class="metric-value" data-stat="total_medicines">8</div>
+            <span class="metric-sub">Active in network</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Total Units</span>
+            <div class="metric-value" data-stat="total_quantity">2,430</div>
+            <span class="metric-sub">Across regional nodes</span>
+          </div>
+          <div class="metric-card warn">
+            <span class="metric-label">Expiry Watchlist</span>
+            <div class="metric-value" data-stat="near_expiry">4</div>
+            <span class="metric-sub">Needs priority allocation</span>
+          </div>
+          <div class="metric-card success">
+            <span class="metric-label">Verified Partners</span>
+            <div class="metric-value" data-stat="verified_orgs">4</div>
+            <span class="metric-sub">NGOs &amp; public clinics</span>
+          </div>
+          <div class="metric-card info">
+            <span class="metric-label">Active Transfers</span>
+            <div class="metric-value" data-stat="active_transfers">2</div>
+            <span class="metric-sub">Traceable in transit</span>
+          </div>
+          <div class="metric-card success">
+            <span class="metric-label">Waste Avoided</span>
+            <div class="metric-value" data-stat="waste_avoided">550</div>
+            <span class="metric-sub">Units successfully diverted</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS: 6 STEP WORKFLOW -->
+    <section class="section-wrapper" id="workflow">
+      <div class="section-head">
+        <div class="badge-tag primary">END-TO-END INTELLIGENCE</div>
+        <h2>From stockroom surplus to community impact.</h2>
+        <p>A unified digital platform replaces fragmented spreadsheets, late-stage expiry dumping, and unauthorized intermediaries with algorithmic trust.</p>
+      </div>
+
+      <div class="flow-grid-6">
+        <div class="flow-step-card">
+          <span class="step-num">STEP 01</span>
+          <h3>Batch Intake</h3>
+          <p>Capture batch numbers, exact quantities, storage temperatures (ambient, cold-chain), and donor credentials upon receipt.</p>
+        </div>
+
+        <div class="flow-step-card">
+          <span class="step-num">STEP 02</span>
+          <h3>Expiry Risk Triaging</h3>
+          <p>Automated classification tags inventory as Safe (&gt;90d), Monitor (&gt;60d), Attention (&gt;30d), or Critical (&lt;30d).</p>
+        </div>
+
+        <div class="flow-step-card featured">
+          <span class="step-num">STEP 03</span>
+          <h3>AI Surplus Forecasting</h3>
+          <p>Predicts localized demand velocity against remaining shelf-life, identifying surplus weeks before potential expiry.</p>
+        </div>
+
+        <div class="flow-step-card">
+          <span class="step-num">STEP 04</span>
+          <h3>Proximity Matching</h3>
+          <p>Instantly computes matching scores (urgency, travel distance km, license verification) to find eligible beneficiary NGOs.</p>
+        </div>
+
+        <div class="flow-step-card">
+          <span class="step-num">STEP 05</span>
+          <h3>Traceable Transfers</h3>
+          <p>Monitors consignment progress through 6 auditable stages with digital waybills and QR batch verification.</p>
+        </div>
+
+        <div class="flow-step-card">
+          <span class="step-num">STEP 06</span>
+          <h3>Certified Eco-Disposal</h3>
+          <p>Routes unviable stock directly to CPCB-authorized biomedical waste incinerators with cryptographic destruction manifests.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLATFORM PILLARS -->
+    <section style="background: var(--slate-50); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="section-wrapper">
+        <div class="section-head">
+          <div class="badge-tag primary">PLATFORM ARCHITECTURE</div>
+          <h2>Designed for governance, speed, and safety.</h2>
+          <p>Built with privacy-by-design, immutable audit logging, and role-based workflows for hospitals, pharmacies, and NGOs.</p>
+        </div>
+
+        <div class="flow-grid-6">
+          <div class="flow-step-card">
+            <div class="badge-tag info" style="margin-bottom: 12px;">AI INTELLIGENCE</div>
+            <h3>Surplus Forecasting</h3>
+            <p>Machine learning estimates seasonal consumption patterns to prevent panic ordering and unnecessary spoilage.</p>
+            <a href="dashboard.html" class="panel-link" style="display:inline-block; margin-top:14px;">Explore pulse →</a>
+          </div>
+
+          <div class="flow-step-card">
+            <div class="badge-tag success" style="margin-bottom: 12px;">VERIFICATION</div>
+            <h3>Verified Beneficiaries</h3>
+            <p>Ensures redistributed medicines are received exclusively by licensed healthcare non-profits and public clinics.</p>
+            <a href="matching.html" class="panel-link" style="display:inline-block; margin-top:14px;">Open matching →</a>
+          </div>
+
+          <div class="flow-step-card">
+            <div class="badge-tag warning" style="margin-bottom: 12px;">ACCOUNTABILITY</div>
+            <h3>Immutable Audit Trail</h3>
+            <p>Every intake, status update, transfer approval, and disposal request is permanently recorded with actor stamps.</p>
+            <a href="admin.html" class="panel-link" style="display:inline-block; margin-top:14px;">Inspect governance →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT STATS & CALL TO ACTION -->
+    <section class="section-wrapper">
+      <div style="background: linear-gradient(135deg, var(--primary-900), #082825); border-radius: var(--radius-xl); padding: 50px 40px; color: #ffffff; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center;">
+        <div>
+          <div class="badge-tag primary" style="background: rgba(204,251,241,0.15); color: var(--primary-400);">TRIPLE BOTTOM LINE IMPACT</div>
+          <h2 style="font-family: var(--font-heading); font-size: 36px; font-weight: 800; margin: 12px 0 16px; line-height: 1.15;">Waste avoided is healthcare delivered.</h2>
+          <p style="color: var(--primary-100); font-size: 15px; line-height: 1.6; max-width: 520px;">DAWAI-SETU is designed for a phased rollout starting from Meerut to the entire Delhi-NCR healthcare belt, saving millions in avoidable medicine loss.</p>
+          <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="dashboard.html" class="btn btn-primary" style="background: var(--primary-500);">Open Command Center →</a>
+            <button class="btn btn-secondary" onclick="openModal('emergencyModal')">Broadcast Emergency SOS</button>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="background: rgba(255,255,255,0.06); padding: 18px 22px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1);">
+            <b style="color: var(--primary-400); font-size: 15px; display: block; margin-bottom: 2px;">Social Access</b>
+            <span style="font-size: 12.5px; color: #d1fae5;">Provides vital treatments to indigent patients through verified community clinics.</span>
+          </div>
+          <div style="background: rgba(255,255,255,0.06); padding: 18px 22px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1);">
+            <b style="color: var(--amber-400); font-size: 15px; display: block; margin-bottom: 2px;">Economic Efficiency</b>
+            <span style="font-size: 12.5px; color: #fef3c7;">Optimizes working capital and eliminates avoidable stock write-offs for pharmacies.</span>
+          </div>
+          <div style="background: rgba(255,255,255,0.06); padding: 18px 22px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1);">
+            <b style="color: var(--emerald-400); font-size: 15px; display: block; margin-bottom: 2px;">Environmental Safety</b>
+            <span style="font-size: 12.5px; color: #ccfbf1;">Prevents pharmaceutical contamination of groundwater and municipal landfills.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer-site">
+    <div class="footer-content">
+      <div class="footer-col brand-col">
+        <div class="brand footer-brand">
+          <div class="brand-badge small">DS</div>
+          <span class="brand-title">DAWAI-<b>SETU</b></span>
+        </div>
+        <p class="footer-desc">Intelligent medicine lifecycle governance, AI surplus prediction, and verified redistribution network for India's healthcare supply chain.</p>
+        <div class="footer-chips">
+          <span class="chip">Smart India Hackathon 2026</span>
+          <span class="chip">Problem #26296</span>
+          <span class="chip">Team Cheek Syndicate</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Core Modules</h4>
+        <ul>
+          <li><a href="dashboard.html">Command Center Pulse</a></li>
+          <li><a href="inventory.html">Batch Inventory &amp; Expiry</a></li>
+          <li><a href="matching.html">AI Allocation Engine</a></li>
+          <li><a href="transfers.html">Traceable Transfer Pipeline</a></li>
+          <li><a href="disposal.html">Eco-Compliance &amp; Disposal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Regional Node</h4>
+        <div class="node-card">
+          <div class="node-status">● Live Regional Sync</div>
+          <p>Meerut District · UP Zone 01</p>
+          <small>Connected to 4 Hospitals, 8 Pharmacies, 3 Verified NGOs</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DAWAI-SETU Platform. Hackathon Demonstration Prototype · Built for high social &amp; environmental impact.</p>
+      <div class="footer-links">
+        <a href="#privacy" onclick="showToast('Data Governance Policy: DPDP Act 2023 Compliant'); return false;">Privacy &amp; Compliance</a>
+        <a href="#terms" onclick="showToast('Standard Healthcare Provider Protocol'); return false;">Terms of Use</a>
+        <a href="admin.html">Audit Logs</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global Emergency SOS Modal -->
+  <div class="modal-overlay" id="emergencyModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('emergencyModal')">×</button>
+      <div class="modal-header">
+        <div class="badge-tag danger">EMERGENCY DISPATCH PROTOCOL</div>
+        <h2>🚨 Broadcast Medicine Need</h2>
+        <p>Trigger an instant priority allocation alert across all registered donors and hospital nodes in the Meerut-NCR cluster.</p>
+      </div>
+      <form onsubmit="handleEmergencySubmit(event)">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Required Medicine / Strength *</label>
+            <input name="medicine" required placeholder="e.g. Paracetamol 650mg & ORS Sachets">
+          </div>
+          <div class="form-group">
+            <label>Required Quantity (Units) *</label>
+            <input name="quantity" type="number" min="1" required placeholder="e.g. 200">
+          </div>
+          <div class="form-group">
+            <label>Urgency Level *</label>
+            <select name="urgency" required>
+              <option value="Critical" selected>Critical (Immediate threat to care)</option>
+              <option value="High">High (Needed within 12 hours)</option>
+              <option value="Medium">Medium (Needed within 48 hours)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Target Facility / Location *</label>
+            <input name="location" required placeholder="e.g. Meerut Community Relief Camp">
+          </div>
+          <div class="form-group">
+            <label>Requesting Authority / Doctor *</label>
+            <input name="required_by" required placeholder="e.g. Dr. A. Verma (CMO)">
+          </div>
+          <div class="form-group">
+            <label>Emergency Contact Number *</label>
+            <input name="contact" required placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group full">
+            <label>Clinical Context / Outbreak Reason *</label>
+            <textarea name="reason" rows="3" required placeholder="Describe clinical reason (e.g. Sudden pediatric gastro flare, seasonal flood relief triage)"></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('emergencyModal')">Cancel</button>
+          <button type="submit" class="btn btn-danger">Broadcast Priority Alert →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
